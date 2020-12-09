@@ -1,0 +1,15 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+button{
+  outline: none;
+}
+input,select{
+  outline: none;
+}
+.main{
+  margin:5rem 0;
+}

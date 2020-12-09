@@ -1,0 +1,39 @@
+button{
+    outline: none;
+}
+.form-status {
+  .header-form-status {
+    background-color: #d335d3;
+    align-items: center;
+    // .ava{
+    //     padding: 0.5rem;
+    //     border-radius: 50%;
+    //     background-color: red;
+    // }
+    .name{
+        font-weight: 500;
+        margin-left: 0.5rem;
+    }
+  }
+  .c-input-status{
+      span{
+          font-size: 0.9rem;
+      }
+      input{
+          border: 1px solid gray;
+          width: 100%;
+      }
+  }
+  .footer-form-status{
+    background-color: #d335d3;
+    button{
+        border: 1px solid #FFF;
+        padding: 4px 18px;
+        border-radius: 12px;
+        color: #d335d3;
+        position: relative;
+        top: 0;
+        left: 90%;
+    }
+  }
+}

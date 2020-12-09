@@ -1,0 +1,27 @@
+.new-feed{
+    .header-new-feed{
+        background-color: #e3d7e5;
+        align-items: center;
+        justify-content: space-between;
+        .info{
+            align-items: center;
+        }
+        .name{
+            .name-x{
+                font-weight: 500;
+                color: #6C006C;
+            }
+        }
+    }
+    .comment{
+        .input-comment{
+            width: 100%;
+            input{
+                width: 100%;
+                border: none;
+                border-bottom: 1px solid gray;
+            }
+        }
+        background-color: #e3d7e5;
+    }
+}
