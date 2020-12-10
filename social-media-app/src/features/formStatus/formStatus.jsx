@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import Avatar from "../../components/avatar/avatar";
 import "./style.scss";
 
@@ -19,7 +21,7 @@ export default function FormStatus() {
       </div>
       <div>
         <div className="icon-photo p-2">
-          <span>icon photo</span>
+          <FontAwesomeIcon icon={faCamera} />
         </div>
       </div>
       <div className="footer-form-status p-2">

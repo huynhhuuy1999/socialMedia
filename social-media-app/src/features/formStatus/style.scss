@@ -1,9 +1,9 @@
-button{
+button:focus{
     outline: none;
 }
 .form-status {
   .header-form-status {
-    background-color: #d335d3;
+    background-color: #f8a9f8;
     align-items: center;
     // .ava{
     //     padding: 0.5rem;
@@ -24,8 +24,11 @@ button{
           width: 100%;
       }
   }
+  .icon-photo{
+    font-size: 1.2rem;
+  }
   .footer-form-status{
-    background-color: #d335d3;
+    background-color: #f8a9f8;
     button{
         border: 1px solid #FFF;
         padding: 4px 18px;

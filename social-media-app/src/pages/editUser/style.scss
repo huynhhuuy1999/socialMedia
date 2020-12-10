@@ -1,0 +1,29 @@
+.edit-user {
+  margin: 0 auto;
+  .icon-edit {
+    margin: auto;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    background-color: #d335d3;
+  }
+  .change-ava {
+    button {
+      outline: none;
+      border: none;
+      color: #fff;
+      background-color: #d335d3;
+      padding: 6px 16px;
+      border-radius: 10px;
+    }
+  }
+  .btn-save {
+    outline: none;
+    border: none;
+    color: #fff;
+    background-color: #d335d3;
+    padding: 6px 16px;
+    border-radius: 10px;
+  }
+}
