@@ -32,7 +32,7 @@ export default function Post(props) {
           <IconLike count={props.count} />
         </div>
       </div>
-      <div className="comment pl-2 pt-4 pr-2 d-flex">
+      {/* <div className="comment pl-2 pt-4 pr-2 d-flex">
         <Avatar width={40} height={40} />
         <div className="input-comment ml-2">
           <input type="text" placeholder="Add comment" className="p-2" />
@@ -47,7 +47,7 @@ export default function Post(props) {
           name="John"
           content="abcdef asdj adhsad hajdh akhakj dkahdk adhkjahsd ksdhadk ad ajhdkja sdja dhkajdh kadahdjk djka dhajd k ad sạdká adkád kádl kákldja d"
         />
-      </div>
+      </div> */}
     </div>
   );
 }

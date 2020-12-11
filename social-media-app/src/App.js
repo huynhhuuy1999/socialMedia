@@ -6,6 +6,7 @@ import { lazy, Suspense } from "react";
 const Home = lazy(() => import("./pages/home/home"));
 const Profile = lazy(() => import("./pages/profile/profile"));
 const EditUser = lazy(() => import("./pages/editUser/editUser"));
+const Login = lazy(() => import("./pages/login/login"));
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route path="/" component={Home} exact/>
               <Route path="/profile" component={Profile} />
               <Route path="/edit" component={EditUser}/>
+              <Route path="/login" component={Login}/>
             </Switch>
           </Suspense>
         </div>

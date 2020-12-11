@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy,Suspense } from "react";
 import { Tabs } from "antd";
 import "./style.scss";
 // import Avatar from "../../components/avatar/avatar";
