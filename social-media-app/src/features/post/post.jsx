@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Avatar from "../../components/avatar/avatar";
 import IconLike from "../../components/iconLike/iconLike";
 import ItemComment from "../itemComment/itemComment";
 import "./style.scss";
+import axios from "axios";
 
 export default function Post(props) {
+  const idPost = props.idPost;
+  const[flagDelPost,setFlagDelPost] = useState(true);
+  const handleDelPost = () => {
+    axios
+      .post("http://localhost:9080/post/delpost", { postId: idPost })
+      .then((res) => {
+        if (res.data.status === "success") {
+          setFlagDelPost(!flagDelPost);
+          alert("Deleted");
+        }
+      });
+  };
   return (
     <div className="new-feed border">
       <div className="header-new-feed p-2 d-flex">
@@ -19,7 +32,7 @@ export default function Post(props) {
           </div>
         </div>
         {props.friend === 0 ? (
-          <div className="icon-del">
+          <div className="icon-del" onClick={() => handleDelPost()}>
             <FontAwesomeIcon icon={faTrash} />
           </div>
         ) : (

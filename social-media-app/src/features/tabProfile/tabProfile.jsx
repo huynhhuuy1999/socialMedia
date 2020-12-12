@@ -1,41 +1,78 @@
-import React, { lazy,Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Tabs } from "antd";
+import axios from "axios";
 import "./style.scss";
-// import Avatar from "../../components/avatar/avatar";
+import Avatar from "../../components/avatar/avatar";
 import Post from "../post/post";
-const Avatar = lazy(() => import("../../components/avatar/avatar"));
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const { TabPane } = Tabs;
 
-export default function TabProfile() {
+export default function TabProfile(props) {
+  // const [listpost, setListpost] = useState([]);
+  let listpost = props.listPost;
+  let a =""
+  a = listpost.map((item, index) => {
+    return (
+      <Post
+        key={index}
+        name={item.name}
+        status={item.content}
+        time="a month ago"
+        count={item.countLike}
+        friend={props.friend}
+        idPost={item._id}
+      />
+    );
+  });
+  const userId = useSelector((state) => state.user.userId);
+  const [listFollow, setListFollow] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:9080/user/getfollow/" + userId)
+      .then((res) => {
+        setListFollow(res.data.list);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div className="tab-profile">
       <Tabs defaultActiveKey="1" centered>
         <TabPane tab="POSTS" key="1">
           <div className="post">
-            <Post
-              name="kathy"
-              status="snskdja dasjdk lad kjdlaks djlasd sldjsal djldk ald jsladjsal dald ald jasld ajldasj dlj dl jksdhakjsd akd hakd"
-              time="a month ago"
-              count={5}
-              friend={0}
-            />
+            {a}
           </div>
         </TabPane>
         <TabPane tab="FOLLOWING" key="2">
-          <Suspense fallback={<div>Loading</div>}>
-            <div>
-              <div>
-                <Avatar width={40} height={40} />
-                <span className="ml-2 fw-bold">jack</span>
-              </div>
-            </div>
-          </Suspense>
+          <div className="d-flex">
+            {listFollow.map((item, index) => {
+              let urlProfile = `/profile/${item.userId}`;
+              return (
+                <div>
+                  <Link to={urlProfile}>
+                    <Avatar width={40} height={40} />
+                    <span className="text-center text-dark">{item.name}</span>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </TabPane>
         <TabPane tab="FOLLOWERS" key="3">
           Content of Tab Pane 3
         </TabPane>
       </Tabs>
+      {/* {
+        test.map((item,index)=>{
+          return(
+<p>{item}</p>
+          )
+          
+        })
+      } */}
     </div>
   );
 }

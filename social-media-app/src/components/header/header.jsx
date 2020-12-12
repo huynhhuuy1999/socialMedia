@@ -5,6 +5,8 @@ import "./style.scss";
 
 export default function Header() {
   const name = useSelector((state) => state.user.name);
+  const userId = useSelector(state=>state.user.userId);
+  const urlProfile = `/profile/${userId}`;
   return (
     <div className="header">
       <div className="c-header">
@@ -13,7 +15,7 @@ export default function Header() {
         </Link>
 
         <div className="user d-flex">
-          <Link to="/profile" className="text-white">
+          <Link to={urlProfile} className="text-white">
             <span>{name}</span>
           </Link>
           <Link to="/login">
