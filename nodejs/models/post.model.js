@@ -8,6 +8,7 @@ const postSchema = new mongoose.Schema({
     countLike:{type:Number,default:0},
     comment:[{
         userId: String,
+        name:String,
         content:String
     }]
 });

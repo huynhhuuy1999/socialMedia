@@ -21,16 +21,23 @@ export default function NewFeed(props) {
   },[x]);
   return (
     <div>
-      {listPost.map((item, index) => (
-        <Post
+      {listPost.map(item=>{
+        let friend = 1;
+        if(item.userId === userId)
+          friend = 0;
+        return(
+          <Post
           name={item.name}
           status={item.content}
           time="a day ago"
           count={item.countLike}
-          friend={1}
-          key={index}
+          friend={friend}
+          key={item._id}
+          idPost={item._id}
+          comment={item.comment}
         />
-      ))}
+        )
+      })}
       {/* <Post
         name="kathy"
         status="snskdja dasjdk lad kjdlaks djlasd sldjsal djldk ald jsladjsal dald ald jasld ajldasj dlj dl jksdhakjsd akd hakd"

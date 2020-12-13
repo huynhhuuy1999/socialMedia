@@ -16,13 +16,14 @@ export default function TabProfile(props) {
   a = listpost.map((item, index) => {
     return (
       <Post
-        key={index}
+        key={item._id}
         name={item.name}
         status={item.content}
         time="a month ago"
         count={item.countLike}
         friend={props.friend}
         idPost={item._id}
+        comment={item.comment}
       />
     );
   });

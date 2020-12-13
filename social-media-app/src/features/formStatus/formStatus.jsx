@@ -35,6 +35,7 @@ export default function FormStatus() {
         <br />
         <input
           type="text"
+          value={status}
           className="p-2"
           placeholder="What's on your mind,"
           onChange={(e) => setStatus(e.target.value)}
