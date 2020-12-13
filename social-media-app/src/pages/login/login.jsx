@@ -29,7 +29,6 @@ export default function Login() {
             const action = login(user);
             dispatch(action);
             setFlagLogin(1);
-            // <Redirect to="/"/>
         }
         else{
             alert("Dang nhap khong thanh cong");

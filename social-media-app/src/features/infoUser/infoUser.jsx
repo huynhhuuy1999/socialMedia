@@ -2,6 +2,7 @@ import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useState } from "react";
+import { useAlert } from "react-alert";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/avatar/avatar";
@@ -10,6 +11,7 @@ import "./style.scss";
 export default function InfoUser(props) {
   const [flagFollow,setFlagFollow] = useState(true);
   const currentUserId = useSelector(state=>state.user.userId);
+  const alert = useAlert();
   const hanldeUnfollow = ()=>{
     setFlagFollow(!flagFollow);
     const userIdFriend = props.id;
@@ -17,7 +19,7 @@ export default function InfoUser(props) {
       currentUserId:currentUserId,
       friendUserId:userIdFriend
     }).then(res=>{
-      if(res.data.status==="success"){alert("unfollowed")}
+      if(res.data.status==="success"){alert.show("Unfollowed")}
     })
   }
   const icon = (

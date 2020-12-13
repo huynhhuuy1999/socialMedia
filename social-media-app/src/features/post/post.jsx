@@ -7,7 +7,7 @@ import ItemComment from "../itemComment/itemComment";
 import "./style.scss";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 export default function Post(props) {
   const idPost = props.idPost;
@@ -17,6 +17,7 @@ export default function Post(props) {
   const userId = useSelector((state) => state.user.userId);
   const name = useSelector((state) => state.user.name);
   const [listComment, setListComment] = useState(props.comment);
+  const alert = useAlert();
   const handleLike = async () => {
     setCountLike(countLike + 1);
     axios
@@ -24,7 +25,7 @@ export default function Post(props) {
         postId: idPost,
         countLike: countLike + 1,
       })
-      .then((res) => alert(res.data.status))
+      .then()
       .catch((err) => {
         console.log(err);
       });
@@ -35,7 +36,7 @@ export default function Post(props) {
       .then((res) => {
         if (res.data.status === "success") {
           setFlagDelPost(true);
-          alert("Deleted");
+          alert.show("Post deleted");
         }
       });
   };

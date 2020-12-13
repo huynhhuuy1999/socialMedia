@@ -1,9 +1,9 @@
 import React, { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
-import FormStatus from "../../features/formStatus/formStatus";
-import NewFeed from "../../features/newFeed/newFeed";
+import Loading from "../../components/loading/loading";
 import "./style.scss";
 
+const FormStatus = lazy(() => import("../../features/formStatus/formStatus"));
 const BrownUser = lazy(() => import("../../features/brownUsers/brownUser"));
 
 export default function Home() {
@@ -19,7 +19,15 @@ export default function Home() {
         empty
       ) : (
         <div className="row">
-          <Suspense fallback={<div>Loading</div>}>
+          <Suspense
+            fallback={
+              <div className="loading">
+                <div className="spinner-border text-danger" role="status">
+                  <span className="sr-only text-center">Loading...</span>
+                </div>
+              </div>
+            }
+          >
             <div className="col-md-9">
               <FormStatus />
             </div>

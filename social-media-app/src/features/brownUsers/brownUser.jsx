@@ -3,11 +3,13 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import Avatar from "../../components/avatar/avatar";
 import "./style.scss";
+import { useAlert } from "react-alert";
 
 export default function BrownUser() {
   const userId = useSelector((state) => state.user.userId);
   const [listBrownUser, setListBrownUser] = useState([]);
   const [flagFollow,setFlagFollow] = useState(true);
+  const alert = useAlert();
   useEffect(() => {
     axios
       .get("http://localhost:9080/user/getuserbrown/" + userId)
@@ -25,7 +27,7 @@ export default function BrownUser() {
       userIdFollow:userIdFollow
     }).then(res=>{
       if(res.data.status==="success"){
-        alert("followed");
+        alert.show("Followed");
         setFlagFollow(!flagFollow);
       }
         
@@ -33,7 +35,7 @@ export default function BrownUser() {
     
   }
   return (
-    <div className="h-100">
+    <div className="h-100 position-fixed brownUser w-100">
       <div className="border p-2">
         <span>Browse Users</span>
       </div>

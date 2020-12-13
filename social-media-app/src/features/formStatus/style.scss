@@ -19,9 +19,9 @@ button:focus{
       span{
           font-size: 0.9rem;
       }
-      input{
-          border: 1px solid gray;
+      textarea{
           width: 100%;
+          word-wrap: break-word;
       }
   }
   .icon-photo{

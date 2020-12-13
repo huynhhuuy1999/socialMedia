@@ -39,17 +39,25 @@ export default function Profile() {
     <div className="shadow w-50 profile border p-3">
       <h3 className="text-center">Profile</h3>
       {id === userIdCurrent ? (
-        <InfoUser friend={0} name={name} gmail={email}/>
+        <InfoUser friend={0} name={name} gmail={email} />
       ) : (
-        <InfoUser friend={1} name={name} gmail={email} id={id}/>
+        <InfoUser friend={1} name={name} gmail={email} id={id} />
       )}
 
       <hr />
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense
+        fallback={
+          <div className="loading">
+            <div className="spinner-border text-danger" role="status">
+              <span className="sr-only text-center">Loading...</span>
+            </div>
+          </div>
+        }
+      >
         {id === userIdCurrent ? (
-          <TabProfile listPost={listPost} friend={0} />
+          <TabProfile listPost={listPost} friend={0} idUser={id}/>
         ) : (
-          <TabProfile listPost={listPost} friend={1} />
+          <TabProfile listPost={listPost} friend={1} idUser={id}/>
         )}
       </Suspense>
     </div>

@@ -11,5 +11,6 @@ input,select{
   outline: none;
 }
 .main{
-  margin:5rem 0;
+  padding-top:5rem;
+  /* margin:5rem 0 0 0; */
 }

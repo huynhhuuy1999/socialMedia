@@ -11,12 +11,14 @@ const { TabPane } = Tabs;
 
 export default function TabProfile(props) {
   // const [listpost, setListpost] = useState([]);
+  const idUser = props.idUser;
+  console.log(idUser);
   let listpost = props.listPost;
   let a =""
   a = listpost.map((item, index) => {
     return (
       <Post
-        key={item._id}
+        key={index}
         name={item.name}
         status={item.content}
         time="a month ago"
@@ -27,18 +29,19 @@ export default function TabProfile(props) {
       />
     );
   });
-  const userId = useSelector((state) => state.user.userId);
+  // const userId = useSelector((state) => state.user.userId);
   const [listFollow, setListFollow] = useState([]);
   useEffect(() => {
+    console.log("effect")
     axios
-      .get("http://localhost:9080/user/getfollow/" + userId)
+      .get("http://localhost:9080/user/getfollow/" + idUser)
       .then((res) => {
         setListFollow(res.data.list);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  },[idUser]);
   return (
     <div className="tab-profile">
       <Tabs defaultActiveKey="1" centered>
@@ -53,7 +56,7 @@ export default function TabProfile(props) {
               let urlProfile = `/profile/${item.userId}`;
               return (
                 <div>
-                  <Link to={urlProfile}>
+                  <Link to={urlProfile} key={index}>
                     <Avatar width={40} height={40} />
                     <span className="text-center text-dark">{item.name}</span>
                   </Link>

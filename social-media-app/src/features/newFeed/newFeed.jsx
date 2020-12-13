@@ -7,51 +7,38 @@ import { useSelector } from "react-redux";
 
 export default function NewFeed(props) {
   const [listPost, setListPost] = useState([]);
-  const userId = useSelector(state=>state.user.userId);
+  const userId = useSelector((state) => state.user.userId);
   const x = props.x;
-  
+
   useEffect(() => {
-    axios.get("http://localhost:9080/user/getuserid/"+userId).then(res=>{
-      axios.post("http://localhost:9080/post/listpost",{
-        userId:res.data.listUserId
-      }).then((res) => {
-        setListPost(res.data.list);
-      });
-    })
-  },[x]);
+    axios.get("http://localhost:9080/user/getuserid/" + userId).then((res) => {
+      axios
+        .post("http://localhost:9080/post/listpost", {
+          userId: res.data.listUserId,
+        })
+        .then((res) => {
+          setListPost(res.data.list);
+        });
+    });
+  }, [x]);
   return (
     <div>
-      {listPost.map(item=>{
+      {listPost.map((item) => {
         let friend = 1;
-        if(item.userId === userId)
-          friend = 0;
-        return(
+        if (item.userId === userId) friend = 0;
+        return (
           <Post
-          name={item.name}
-          status={item.content}
-          time="a day ago"
-          count={item.countLike}
-          friend={friend}
-          key={item._id}
-          idPost={item._id}
-          comment={item.comment}
-        />
-        )
+            name={item.name}
+            status={item.content}
+            time="a day ago"
+            count={item.countLike}
+            friend={friend}
+            key={item._id}
+            idPost={item._id}
+            comment={item.comment}
+          />
+        );
       })}
-      {/* <Post
-        name="kathy"
-        status="snskdja dasjdk lad kjdlaks djlasd sldjsal djldk ald jsladjsal dald ald jasld ajldasj dlj dl jksdhakjsd akd hakd"
-        time="a month ago"
-        count={5}
-        friend={1}
-      />
-      <Post
-        name="kathy"
-        status="snskdja dasjdk lad kjdlaks djlasd sldjsal djldk ald jsladjsal dald ald jasld ajldasj dlj dl jksdhakjsd akd hakd"
-        time="a month ago"
-        count={5}
-        friend={0}
-      /> */}
       {x}
     </div>
   );
