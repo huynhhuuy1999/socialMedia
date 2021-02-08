@@ -8,6 +8,7 @@ import "./style.scss";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useAlert } from "react-alert";
+import moment from "moment";
 
 export default function Post(props) {
   const idPost = props.idPost;
@@ -16,52 +17,51 @@ export default function Post(props) {
   const [comment, setCommnet] = useState("");
   const userId = useSelector((state) => state.user.userId);
   const name = useSelector((state) => state.user.name);
+  const avatar = useSelector((state) => state.user.avatar);
   const [listComment, setListComment] = useState(props.comment);
   const alert = useAlert();
   const handleLike = async () => {
-    setCountLike(countLike + 1);
+    // await setCountLike(countLike + 1);
     axios
-      .post("http://localhost:9080/post/like", {
+      .post("/post/like", {
         postId: idPost,
         countLike: countLike + 1,
       })
-      .then()
+      .then((res) => {
+        setCountLike(countLike + 1);
+      })
       .catch((err) => {
         console.log(err);
       });
   };
   const handleDelPost = () => {
-    axios
-      .post("http://localhost:9080/post/delpost", { postId: idPost })
-      .then((res) => {
-        if (res.data.status === "success") {
-          setFlagDelPost(true);
-          alert.show("Post deleted");
-        }
-      });
+    axios.post("/post/delpost", { postId: idPost }).then((res) => {
+      if (res.data.status === "success") {
+        setFlagDelPost(true);
+        alert.show("Post deleted");
+      }
+    });
   };
+  
   const handleAddComment = (event) => {
-    if (event.key === "Enter") {
-      axios
-        .post("http://localhost:9080/post/addcomment", {
-          userId: userId,
-          comment: comment,
-          name: name,
-          postId: idPost,
-        })
-        .then((res) => {
-          let newListComment = [...listComment];
-          newListComment.push({
+    if (comment !== "") {
+      if (event.key === "Enter") {
+        axios
+          .post("/post/addcomment", {
             userId: userId,
-            content: comment,
+            comment: comment,
             name: name,
-          });
-          setListComment(newListComment);
-        })
-        .then((res) => {
-          setCommnet("");
-        })
-        .catch((err) => console.log(err));
+            postId: idPost,
+            avatar:avatar
+          })
+          .then((res) => {
+            setListComment(res.data.postRes);
+          })
+          .then((res) => {
+            setCommnet("");
+          })
+          .catch((err) => console.log(err));
+      }
     }
   };
   return (
@@ -72,7 +72,7 @@ export default function Post(props) {
         <div className="new-feed border mt-2">
           <div className="header-new-feed p-2 d-flex">
             <div className="d-flex info">
-              <Avatar width={40} height={40} />
+              <Avatar width={40} height={40} url={`http://localhost:9080/uploads/${props.avatar}`}/>
               <div className="name ml-1 mr-1">
                 <span className="name-x">{props.name}</span>
                 <br />
@@ -94,7 +94,7 @@ export default function Post(props) {
             </div>
           </div>
           <div className="comment pl-2 pt-4 pr-2 d-flex">
-            <Avatar width={40} height={40} />
+            <Avatar width={40} height={40} url={`http://localhost:9080/uploads/${props.avatar}`}/>
             <div className="input-comment ml-2">
               <input
                 type="text"
@@ -108,11 +108,18 @@ export default function Post(props) {
           </div>
           <div className="comment pl-2 pt-4 pb-4 pr-2">
             {listComment.map((item, index) => {
+              let friend = 1;
+              if (item.userId === userId) friend = 0;
               return (
                 <ItemComment
                   name={item.name}
                   content={item.content}
+                  time={item.timeComment}
                   key={index}
+                  isFriend={friend}
+                  id={item._id}
+                  postId={idPost}
+                  avatar={item.avatar}
                 />
               );
             })}

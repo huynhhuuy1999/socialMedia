@@ -11,11 +11,12 @@ import "./style.scss";
 export default function InfoUser(props) {
   const [flagFollow,setFlagFollow] = useState(true);
   const currentUserId = useSelector(state=>state.user.userId);
+  const currentAvatar = useSelector(state=>state.user.avatar);
   const alert = useAlert();
   const hanldeUnfollow = ()=>{
     setFlagFollow(!flagFollow);
     const userIdFriend = props.id;
-    axios.post("http://localhost:9080/user/unfollow",{
+    axios.post("/user/unfollow",{
       currentUserId:currentUserId,
       friendUserId:userIdFriend
     }).then(res=>{
@@ -34,7 +35,7 @@ export default function InfoUser(props) {
   return (
     <div className="d-flex justify-content-between">
       <div className="d-flex">
-        <Avatar width={50} height={50} />
+        <Avatar width={50} height={50} url={`http://localhost:9080/uploads/${currentAvatar}`}/>
         <div className="pl-2 pr-2">
           <span>{props.name}</span>
           <br />

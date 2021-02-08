@@ -1,0 +1,23 @@
+@import "variables";
+.register{
+    width: 50%;
+    margin: 0 auto;
+    @include breakpoint(medium){
+        width: 100%;
+    }
+    .btn-login {
+        outline: none;
+        border: none;
+        color: #fff;
+        background-color: #d335d3;
+        padding: 0.55em 0.45em;
+        border-radius: 10px;
+        width: 25%;
+        margin-left: 5px;
+      }
+      .box-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+}

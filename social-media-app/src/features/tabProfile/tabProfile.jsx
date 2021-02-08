@@ -6,6 +6,7 @@ import Avatar from "../../components/avatar/avatar";
 import Post from "../post/post";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 const { TabPane } = Tabs;
 
@@ -14,18 +15,22 @@ export default function TabProfile(props) {
   const idUser = props.idUser;
   console.log(idUser);
   let listpost = props.listPost;
-  let a =""
+  let a ="";
   a = listpost.map((item, index) => {
+    let time = item.time;
+    console.log(index,item.countLike)
+    let formatTime = moment(time).format("DD-MM-YYYY hh:mm a");
     return (
       <Post
         key={index}
         name={item.name}
         status={item.content}
-        time="a month ago"
+        time={formatTime}
         count={item.countLike}
         friend={props.friend}
         idPost={item._id}
         comment={item.comment}
+        avatar={item.avatar}
       />
     );
   });
@@ -34,7 +39,7 @@ export default function TabProfile(props) {
   useEffect(() => {
     console.log("effect")
     axios
-      .get("http://localhost:9080/user/getfollow/" + idUser)
+      .get("/user/getfollow/" + idUser)
       .then((res) => {
         setListFollow(res.data.list);
       })
@@ -57,7 +62,7 @@ export default function TabProfile(props) {
               return (
                 <div>
                   <Link to={urlProfile} key={index}>
-                    <Avatar width={40} height={40} />
+                    <Avatar width={40} height={40} url={`http://localhost:9080/uploads/${item.avatar}`}/>
                     <span className="text-center text-dark">{item.name}</span>
                   </Link>
                 </div>

@@ -12,14 +12,16 @@ export default function FormStatus() {
   const [status, setStatus] = useState("");
   const name = useSelector((state) => state.user.name);
   const userId = useSelector((state) => state.user.userId);
+  const avatar = useSelector((state)=>state.user.avatar);
   const [flagPost, setFlagPost] = useState(true);
   const placeholder = `What's on your mind, ${name}`;
   const handleAddPost = (status) => {
     axios
-      .post("http://localhost:9080/post/addpost", {
+      .post("/post/addpost", {
         userId: userId,
         content: status,
         name: name,
+        avatar:avatar
       })
       .then((res) => {
         setStatus("");
@@ -33,7 +35,7 @@ export default function FormStatus() {
     <>
       <div className="form-status border">
         <div className="header-form-status d-flex p-2">
-          <Avatar width={30} height={30} />
+          <Avatar width={30} height={30} url={`http://localhost:9080/uploads/${avatar}`}/>
           <span className="name">{name}</span>
         </div>
         <div className="c-input-status p-2">

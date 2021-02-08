@@ -1,12 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../../redux/actions/user.action";
 import "./style.scss";
 
 export default function Header() {
   const name = useSelector((state) => state.user.name);
   const userId = useSelector(state=>state.user.userId);
   const urlProfile = `/profile/${userId}`;
+  const dispatch = useDispatch();
+  const handleLogout = ()=>{
+    const action = logout();
+    dispatch(action);
+  }
   return (
     <div className="header">
       <div className="c-header">
@@ -19,7 +25,7 @@ export default function Header() {
             <span>{name}</span>
           </Link>
           <Link to="/login">
-            <button>Signout</button>
+            <button onClick={()=>handleLogout()}>Signout</button>
           </Link>
         </div>
       </div>

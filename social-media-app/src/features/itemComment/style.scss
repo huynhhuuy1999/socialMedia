@@ -11,3 +11,10 @@
 .c-comment{
     word-wrap: break-word;
 }
+.comment-del{
+    cursor: pointer;
+    transition: color 0.25s;
+    &:hover{
+        color: red;
+    }
+}

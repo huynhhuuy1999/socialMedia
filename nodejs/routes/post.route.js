@@ -8,5 +8,6 @@ router.get("/getlistpostuser/:id",controller.getListPostUser);
 router.post("/delpost",controller.delPost);
 router.post("/like",controller.likePost);
 router.post("/addcomment",controller.addComment);
+router.post("/delcomment",controller.delComment);
 
 module.exports = router;

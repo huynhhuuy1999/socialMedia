@@ -30,3 +30,8 @@
         }
     }
 }
+@media(max-width:500px){
+    .c-header{
+        flex-direction: column;
+    }
+}

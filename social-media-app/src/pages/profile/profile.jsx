@@ -17,7 +17,7 @@ export default function Profile() {
   const [listPost, setListPost] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:9080/post/getlistpostuser/" + id)
+      .get("/post/getlistpostuser/" + id)
       .then((res) => {
         setListPost(res.data.listPost);
       })
@@ -25,7 +25,7 @@ export default function Profile() {
         console.log(err);
       });
     axios
-      .get("http://localhost:9080/user/getinfouser/" + id)
+      .get("/user/getinfouser/" + id)
       .then((res) => {
         setName(res.data.user[0].name);
         setEmail(res.data.user[0].email);

@@ -12,5 +12,7 @@ input,select{
 }
 .main{
   padding-top:5rem;
-  /* margin:5rem 0 0 0; */
+}
+.flex-jc-c{
+  justify-content: center;
 }

@@ -4,6 +4,7 @@ import axios from "axios";
 import "./style.scss";
 import Post from "../post/post";
 import { useSelector } from "react-redux";
+import moment from "moment";
 
 export default function NewFeed(props) {
   const [listPost, setListPost] = useState([]);
@@ -11,9 +12,9 @@ export default function NewFeed(props) {
   const x = props.x;
 
   useEffect(() => {
-    axios.get("http://localhost:9080/user/getuserid/" + userId).then((res) => {
+    axios.get("/user/getuserid/" + userId).then((res) => {
       axios
-        .post("http://localhost:9080/post/listpost", {
+        .post("/post/listpost", {
           userId: res.data.listUserId,
         })
         .then((res) => {
@@ -25,17 +26,26 @@ export default function NewFeed(props) {
     <div>
       {listPost.map((item) => {
         let friend = 1;
+        let time = "";
+        console.log(item.time);
         if (item.userId === userId) friend = 0;
+        if(item.time===undefined){
+          
+        }
+        else{
+          time = moment(item.time).format("DD-MM-YYYY hh:mm a");
+        }
         return (
           <Post
             name={item.name}
             status={item.content}
-            time="a day ago"
+            time={time}
             count={item.countLike}
             friend={friend}
             key={item._id}
             idPost={item._id}
             comment={item.comment}
+            avatar={item.avatar}
           />
         );
       })}

@@ -24,5 +24,7 @@ mongoose.connect(process.env.MONGO_URL, {
 app.use("/user",userRoute);
 app.use("/post",postRoute);
 
+app.use(express.static('public'));
+
 const port = process.env.PORT||9080;
 app.listen(port,()=>{console.log("Server is starting on ",port)});

@@ -5,7 +5,8 @@ import image from "../../assets/18062020_2.jpg";
 export default function Avatar(props) {
     return (
         <div className="ava">
-            <img src={image} width={props.width} height={props.height}/>
+            {/* <img src={image} width={props.width} height={props.height}/> */}
+            <img src={props.url} width={props.width} height={props.height}/> 
         </div>
     );
 }

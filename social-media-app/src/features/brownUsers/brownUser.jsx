@@ -12,7 +12,7 @@ export default function BrownUser() {
   const alert = useAlert();
   useEffect(() => {
     axios
-      .get("http://localhost:9080/user/getuserbrown/" + userId)
+      .get("/user/getuserbrown/" + userId)
       .then((res) => {
         setListBrownUser(res.data.listUserBrown);
       })
@@ -20,11 +20,12 @@ export default function BrownUser() {
         console.log(err);
       });
   }, [flagFollow]);
-  const handleFollow = (userIdFollow, nameUserFollow)=>{
-    axios.post("http://localhost:9080/user/addfollow",{
+  const handleFollow = (userIdFollow, nameUserFollow,avatarUserFollow)=>{
+    axios.post("/user/addfollow",{
       userId:userId,
       nameUserFollow:nameUserFollow,
-      userIdFollow:userIdFollow
+      userIdFollow:userIdFollow,
+      avatarUserFollow:avatarUserFollow
     }).then(res=>{
       if(res.data.status==="success"){
         alert.show("Followed");
@@ -47,10 +48,10 @@ export default function BrownUser() {
               key={index}
             >
               <div className="d-flex p-2 align-items-center">
-                <Avatar width={40} height={40} />
+                <Avatar width={40} height={40} url={`http://localhost:9080/uploads/${item.avatar}`}/>
                 <div className="name ml-1 mr-1">{item.name}</div>
               </div>
-              <button onClick={()=>handleFollow(item._id, item.name)}>Follow</button>
+              <button onClick={()=>handleFollow(item._id, item.name,item.avatar)}>Follow</button>
             </div>
           );
         })}
