@@ -35,7 +35,7 @@ export default function FormStatus() {
     <>
       <div className="form-status border">
         <div className="header-form-status d-flex p-2">
-          <Avatar width={30} height={30} url={`http://localhost:9080/uploads/${avatar}`}/>
+          <Avatar width={30} height={30} url={`/uploads/${avatar}`}/>
           <span className="name">{name}</span>
         </div>
         <div className="c-input-status p-2">

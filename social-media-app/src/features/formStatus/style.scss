@@ -29,14 +29,13 @@ button:focus{
   }
   .footer-form-status{
     background-color: #f8a9f8;
+    display: flex;
+    justify-content: flex-end;
     button{
         border: 1px solid #FFF;
         padding: 4px 18px;
         border-radius: 12px;
         color: #d335d3;
-        position: relative;
-        top: 0;
-        left: 90%;
     }
   }
 }

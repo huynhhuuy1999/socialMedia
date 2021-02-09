@@ -13,12 +13,10 @@ const { TabPane } = Tabs;
 export default function TabProfile(props) {
   // const [listpost, setListpost] = useState([]);
   const idUser = props.idUser;
-  console.log(idUser);
   let listpost = props.listPost;
   let a ="";
   a = listpost.map((item, index) => {
     let time = item.time;
-    console.log(index,item.countLike)
     let formatTime = moment(time).format("DD-MM-YYYY hh:mm a");
     return (
       <Post
@@ -62,7 +60,7 @@ export default function TabProfile(props) {
               return (
                 <div>
                   <Link to={urlProfile} key={index}>
-                    <Avatar width={40} height={40} url={`http://localhost:9080/uploads/${item.avatar}`}/>
+                    <Avatar width={40} height={40} url={`/uploads/${item.avatar}`}/>
                     <span className="text-center text-dark">{item.name}</span>
                   </Link>
                 </div>

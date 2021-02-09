@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const path = require("path");
 require('dotenv').config()
 
 const userRoute = require("./routes/user.route");
@@ -25,6 +26,11 @@ app.use("/user",userRoute);
 app.use("/post",postRoute);
 
 app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const port = process.env.PORT||9080;
 app.listen(port,()=>{console.log("Server is starting on ",port)});

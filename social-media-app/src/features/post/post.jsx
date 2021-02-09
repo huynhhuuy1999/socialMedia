@@ -72,7 +72,7 @@ export default function Post(props) {
         <div className="new-feed border mt-2">
           <div className="header-new-feed p-2 d-flex">
             <div className="d-flex info">
-              <Avatar width={40} height={40} url={`http://localhost:9080/uploads/${props.avatar}`}/>
+              <Avatar width={40} height={40} url={`/uploads/${props.avatar}`}/>
               <div className="name ml-1 mr-1">
                 <span className="name-x">{props.name}</span>
                 <br />
@@ -94,7 +94,7 @@ export default function Post(props) {
             </div>
           </div>
           <div className="comment pl-2 pt-4 pr-2 d-flex">
-            <Avatar width={40} height={40} url={`http://localhost:9080/uploads/${props.avatar}`}/>
+            <Avatar width={40} height={40} url={`/uploads/${props.avatar}`}/>
             <div className="input-comment ml-2">
               <input
                 type="text"

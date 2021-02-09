@@ -16,12 +16,12 @@ export default function Header() {
   return (
     <div className="header">
       <div className="c-header">
-        <Link to="/" className="text-white">
+        <Link to="/" className="text-white c-header-link">
           <span>Social Media App</span>
         </Link>
 
         <div className="user d-flex">
-          <Link to={urlProfile} className="text-white">
+          <Link to={urlProfile} className="text-white c-header-link">
             <span>{name}</span>
           </Link>
           <Link to="/login">

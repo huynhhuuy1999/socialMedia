@@ -35,7 +35,7 @@ export default function InfoUser(props) {
   return (
     <div className="d-flex justify-content-between">
       <div className="d-flex">
-        <Avatar width={50} height={50} url={`http://localhost:9080/uploads/${currentAvatar}`}/>
+        <Avatar width={50} height={50} url={`/uploads/${props.avatar}`}/>
         <div className="pl-2 pr-2">
           <span>{props.name}</span>
           <br />

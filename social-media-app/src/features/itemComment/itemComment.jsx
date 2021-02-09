@@ -26,7 +26,7 @@ export default function ItemComment(props) {
   return (
     flagDelComment===0?(
       <div className="d-flex item-comment border-bottom border-secondary pb-1 pt-2">
-      <Avatar width={40} height={40} url={`http://localhost:9080/uploads/${props.avatar}`}/>
+      <Avatar width={40} height={40} url={`/uploads/${props.avatar}`}/>
       <div className="pl-1 pr-1">
         <span className="name-comment">{props.name}</span>
         <br />
@@ -40,19 +40,5 @@ export default function ItemComment(props) {
       </div>
     </div>
     ):""
-    // <div className="d-flex item-comment border-bottom border-secondary pb-1 pt-2">
-    //   <Avatar width={40} height={40} />
-    //   <div className="pl-1 pr-1">
-    //     <span className="name-comment">{props.name}</span>
-    //     <br />
-    //     <span className="c-comment">{props.content}</span>
-    //     <br />
-    //     <span className="time">{props.time}</span>
-    //     <br/>
-    //     {
-    //       props.isFriend===0?<span className="comment-del" onClick={()=>handleDeleteComment()}>Xóa</span>:""
-    //     }
-    //   </div>
-    // </div>
   );
 }

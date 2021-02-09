@@ -81,13 +81,13 @@ export default function EditUser() {
     }
   };
   return (
-    <div className="shadow edit-user w-50 border p-3">
+    <div className="shadow edit-user border p-3">
       <div className="icon-edit d-flex justify-content-center align-items-center">
         <FontAwesomeIcon icon={faPencilAlt} color="#FFF" />
       </div>
       <h3 className="text-center">Edit Profile</h3>
       <div className="change-ava d-flex flex-column align-items-center">
-        <Avatar width={70} height={70} url={`http://localhost:9080/uploads/${x}`}/>
+        <Avatar width={70} height={70} url={`/uploads/${x}`}/>
         {/* <button className="mt-2">Upload Image</button> */}
         <form>
           <input

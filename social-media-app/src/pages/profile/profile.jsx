@@ -11,8 +11,10 @@ export default function Profile() {
   const nameCurrent = useSelector((state) => state.user.name);
   const emailCurrent = useSelector((state) => state.user.email);
   const userIdCurrent = useSelector((state) => state.user.userId);
+  const avatarCurrent = useSelector((state)=> state.user.avatar);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [avatar, setAvatar] = useState(null);
   const { id } = useParams();
   const [listPost, setListPost] = useState([]);
   useEffect(() => {
@@ -29,6 +31,7 @@ export default function Profile() {
       .then((res) => {
         setName(res.data.user[0].name);
         setEmail(res.data.user[0].email);
+        setAvatar(res.data.user[0].avatar);
       })
       .catch((err) => {
         console.log(err);
@@ -36,12 +39,12 @@ export default function Profile() {
   }, [id]);
 
   return (
-    <div className="shadow w-50 profile border p-3">
+    <div className="shadow profile border p-3">
       <h3 className="text-center">Profile</h3>
       {id === userIdCurrent ? (
-        <InfoUser friend={0} name={name} gmail={email} />
+        <InfoUser friend={0} name={name} gmail={email} avatar={avatarCurrent}/>
       ) : (
-        <InfoUser friend={1} name={name} gmail={email} id={id} />
+        <InfoUser friend={1} name={name} gmail={email} id={id} avatar={avatar}/>
       )}
 
       <hr />

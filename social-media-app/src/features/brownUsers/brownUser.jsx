@@ -48,7 +48,7 @@ export default function BrownUser() {
               key={index}
             >
               <div className="d-flex p-2 align-items-center">
-                <Avatar width={40} height={40} url={`http://localhost:9080/uploads/${item.avatar}`}/>
+                <Avatar width={40} height={40} url={`/uploads/${item.avatar}`}/>
                 <div className="name ml-1 mr-1">{item.name}</div>
               </div>
               <button onClick={()=>handleFollow(item._id, item.name,item.avatar)}>Follow</button>
